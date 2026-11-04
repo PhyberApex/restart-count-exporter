@@ -1,0 +1,31 @@
+name: Checks
+
+on:
+  workflow_call:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.15'
+      - name: Test
+        run: python -m unittest discover -p 'test_*.py' -v
+      - name: Build the image
+        run: docker build -t restart-count-exporter:ci .
+      - name: Scrape the real Docker daemon from inside the image
+        run: |
+          docker run -d --name rce -v /var/run/docker.sock:/var/run/docker.sock:ro -e DOCKER_API_BASE=unix:///var/run/docker.sock -p 9103:9103 restart-count-exporter:ci
+          sleep 2
+          curl -fsS http://localhost:9103/metrics | tee /tmp/metrics
+          grep -q 'docker_container_restart_collector_up 1' /tmp/metrics
+          grep -q 'docker_container_restart_count{name="rce"' /tmp/metrics

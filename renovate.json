@@ -1,0 +1,33 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "docker:pinDigests"
+  ],
+  "packageRules": [
+    {
+      "description": "Minor and patch updates merge themselves once the checks pass",
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "digest",
+        "pin"
+      ],
+      "automerge": true
+    },
+    {
+      "description": "docker-compose.yml is the usage example and names this repo's own image on purpose; pinning or bumping it there would only ever point readers at a stale digest",
+      "matchPackageNames": [
+        "ghcr.io/phyberapex/restart-count-exporter"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "A base-image bump changes the published image, so it is a fix: release-please cuts a patch release for it. Workflow-action bumps stay chores and release nothing.",
+      "matchManagers": [
+        "dockerfile"
+      ],
+      "semanticCommitType": "fix"
+    }
+  ]
+}
