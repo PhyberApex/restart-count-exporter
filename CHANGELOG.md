@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.1](https://github.com/PhyberApex/restart-count-exporter/compare/v1.0.0...v1.0.1) (2026-11-28)
+
+
+### Bug Fixes
+
+* **deps:** update python:3.15-slim docker digest to 08a4c22 ([#9](https://github.com/PhyberApex/restart-count-exporter/issues/9)) ([b2861e4](https://github.com/PhyberApex/restart-count-exporter/commit/b2861e4d2584cf84e3a92307dcddbd8ed246e300))
+* **deps:** update python:3.15-slim docker digest to 63bb298 ([#8](https://github.com/PhyberApex/restart-count-exporter/issues/8)) ([ae965a6](https://github.com/PhyberApex/restart-count-exporter/commit/ae965a6c608ac3289cf55680ae441a150f479f03))
+* **deps:** update python:3.15-slim docker digest to 65a65fc ([#7](https://github.com/PhyberApex/restart-count-exporter/issues/7)) ([66f7dfd](https://github.com/PhyberApex/restart-count-exporter/commit/66f7dfdc058260e2ce296fe0b6a63a3fb2847afe))
+* **deps:** update python:3.15-slim docker digest to e97b88e ([#5](https://github.com/PhyberApex/restart-count-exporter/issues/5)) ([b8503e6](https://github.com/PhyberApex/restart-count-exporter/commit/b8503e64e92fa8280160cea9eaf2127e62ebabc6))
+
 ## 1.0.0 (2026-11-04)
 
 
